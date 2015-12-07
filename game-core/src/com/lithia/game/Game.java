@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable
 {
 	
+	private static final long serialVersionUID = 1L;
+	
 	public static final String NAME = "Game";
 	public static final int WIDTH = 240;
 	public static final int HEIGHT = 160;
