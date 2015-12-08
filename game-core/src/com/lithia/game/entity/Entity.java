@@ -1,6 +1,63 @@
 package com.lithia.game.entity;
 
-public class Entity
+import com.lithia.game.gfx.Bitmap;
+import com.lithia.game.util.Box;
+import com.lithia.game.world.World;
+
+public abstract class Entity
 {
-	// just preparing for the future :)
+	
+	protected float x, y;
+	private Bitmap draw;
+	private Box box;
+	private World parent;
+	
+	public Entity(int x, int y, Bitmap draw)
+	{
+		this.x = x;
+		this.y = y;
+		this.draw = draw;
+		
+		box = new Box(x, y, draw.w, draw.h);
+	}
+	
+	protected void init()
+	{
+	}
+	
+	public void update()
+	{
+		if(parent != null) parent.setRedraw(true);
+	}
+	
+	public int getX()
+	{
+		return (int) x;
+	}
+	
+	public int getY()
+	{
+		return (int) y;
+	}
+	
+	public Bitmap getDrawGraphics()
+	{
+		return draw;
+	}
+	
+	public boolean collides(Entity e)
+	{
+		return Box.collide(box, e.getBoundingBox());
+	}
+	
+	public Box getBoundingBox()
+	{
+		return box;
+	}
+	
+	public void setParent(World parent)
+	{
+		this.parent = parent;
+	}
+	
 }
