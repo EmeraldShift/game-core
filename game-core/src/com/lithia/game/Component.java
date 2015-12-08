@@ -17,8 +17,6 @@ public class Component extends Canvas implements Runnable
 	
 	private static final long serialVersionUID = 1L;
 	
-	
-	
 	private Game game;
 	private Screen screen;
 	private BufferedImage img;
