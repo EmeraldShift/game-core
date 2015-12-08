@@ -5,6 +5,7 @@ public class Bitmap
 	
 	public int w, h;
 	public int[] pixels;
+	private int color = 0x000000;
 	
 	public Bitmap(int w, int h)
 	{
@@ -26,8 +27,24 @@ public class Bitmap
 				int xx = x + xo;
 				if(xx < 0 || xx >= w) continue;
 				
-				pixels[xx + yy * w] = b.pixels[x + y * b.w];
+				int p = b.pixels[x + y * b.w];
+				
+				if(p != 0xffff00ff && p != 0xff00ff)
+					pixels[xx + yy * w] = p;
 			}
+		}
+	}
+	
+	public void setClearColor(int color)
+	{
+		this.color = color;
+	}
+	
+	public void clear()
+	{
+		for(int i = 0; i < pixels.length; i++)
+		{
+			pixels[i] = color;
 		}
 	}
 	

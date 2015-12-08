@@ -12,7 +12,10 @@ public class Screen extends Bitmap
 	
 	public void render(Game game)
 	{
-		// TODO draw from set of game entities.
+		clear();
+		game.getWorld().render();
+		
+		draw(game.getWorld().getDrawGraphics(), game.scrollX, game.scrollY);
 	}
 
 }
