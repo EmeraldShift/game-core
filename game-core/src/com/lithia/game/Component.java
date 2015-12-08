@@ -17,11 +17,7 @@ public class Component extends Canvas implements Runnable
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static final String NAME = "Game";
-	private static final double FRAME_RATE = 60.0;
-	public static final int WIDTH = 240;
-	public static final int HEIGHT = 160;
-	public static final int SCALE = 3;
+	
 	
 	private Game game;
 	private Screen screen;
@@ -32,8 +28,8 @@ public class Component extends Canvas implements Runnable
 	private void init()
 	{
 		game = new Game();
-		screen = new Screen(WIDTH, HEIGHT);
-		img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		screen = new Screen(Configuration.WIDTH, Configuration.HEIGHT);
+		img = new BufferedImage(Configuration.WIDTH, Configuration.HEIGHT, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 	}
 	
@@ -52,7 +48,7 @@ public class Component extends Canvas implements Runnable
 	{
 		long time = System.nanoTime();
 		double unproc = 0;
-		double timeRes = 1000000000.0 / FRAME_RATE;
+		double timeRes = 1000000000.0 / Configuration.FRAME_RATE;
 		
 		init();
 		
@@ -96,7 +92,7 @@ public class Component extends Canvas implements Runnable
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		g.drawImage(img, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+		g.drawImage(img, 0, 0, Configuration.WIDTH * Configuration.SCALE, Configuration.HEIGHT * Configuration.SCALE, null);
 		g.dispose();
 		bs.show();
 	}
@@ -117,11 +113,11 @@ public class Component extends Canvas implements Runnable
 	public static void main(String[] args)
 	{
 		Component game = new Component();
-		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		game.setMinimumSize(new Dimension(Configuration.WIDTH * Configuration.SCALE, Configuration.HEIGHT * Configuration.SCALE));
+		game.setMaximumSize(new Dimension(Configuration.WIDTH * Configuration.SCALE, Configuration.HEIGHT * Configuration.SCALE));
+		game.setPreferredSize(new Dimension(Configuration.WIDTH * Configuration.SCALE, Configuration.HEIGHT * Configuration.SCALE));
 		
-		JFrame frame = new JFrame(NAME);
+		JFrame frame = new JFrame(Configuration.NAME);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 		frame.setResizable(false);
